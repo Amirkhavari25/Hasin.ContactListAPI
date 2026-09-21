@@ -1,1 +1,14 @@
-<Solution />
+<Solution>
+  <Folder Name="/Application/">
+    <Project Path="ContactList.Application/ContactList.Application.csproj" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="ContactList.Domain/ContactList.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastracture/">
+    <Project Path="ContactList.Infrastracture/ContactList.Infrastracture.csproj" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="ContactList.API/ContactList.API.csproj" />
+  </Folder>
+</Solution>
