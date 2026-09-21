@@ -2,7 +2,7 @@
 
 namespace ContactList.Domain.Entities
 {
-    public class Contact : BaseEntity
+    public sealed class Contact : BaseEntity
     {
         public string FirstName { get; private set; } = default!;
         public string LastName { get; private set; } = default!;
@@ -10,11 +10,7 @@ namespace ContactList.Domain.Entities
         public string Tag { get; private set; } = default!;
 
         public Guid UserId { get; private set; }
-        public User? User { get; private set; }
 
-        protected Contact()
-        {
-        }
         public Contact(
             Guid id,
             string firstName,
@@ -24,6 +20,11 @@ namespace ContactList.Domain.Entities
             Guid userId)
             : base(id)
         {
+            if (userId == Guid.Empty)
+                throw new ArgumentException(
+                    "User id cannot be empty.",
+                    nameof(userId));
+
             FirstName = firstName;
             LastName = lastName;
             PhoneNumber = phoneNumber;
