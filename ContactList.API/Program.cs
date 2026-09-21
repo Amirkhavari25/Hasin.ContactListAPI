@@ -1,6 +1,4 @@
 using ContactList.DI;
-using ContactList.Infrastracture.Persistance;
-using Microsoft.EntityFrameworkCore;
 
 namespace ContactList.API
 {
@@ -13,7 +11,7 @@ namespace ContactList.API
             // Add infrastructure services to the container.
             builder.Services.AddInfrastructureServices(builder.Configuration);
 
-            
+
 
 
             builder.Services.AddControllers();
@@ -23,14 +21,6 @@ namespace ContactList.API
 
             var app = builder.Build();
 
-            //automatic jobs during running app for the first time
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                //Auto create database if not exist
-                var dbContext = services.GetRequiredService<EFDbContext>();
-                await dbContext.Database.MigrateAsync();
-            }
 
 
             // Configure the HTTP request pipeline.
