@@ -2,6 +2,9 @@
   <Folder Name="/Application/">
     <Project Path="ContactList.Application/ContactList.Application.csproj" />
   </Folder>
+  <Folder Name="/DI/">
+    <Project Path="ContactList.DI/ContactList.DI.csproj" Id="48d897b1-1f75-443a-b853-1b7718c84c49" />
+  </Folder>
   <Folder Name="/Domain/">
     <Project Path="ContactList.Domain/ContactList.Domain.csproj" />
   </Folder>

@@ -363,5 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #  appsetting
-./ContactList.API/appsettings.json
 /ContactList.API/appsettings.json
