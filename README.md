@@ -67,7 +67,7 @@ Solution
 │   │   ├── Dapper
 │   │   ├── Repositories
 │   │   └── Database
-│   ├── Authentication
+│   ├── Seecurity
 │   └── External Services
 |
 |
