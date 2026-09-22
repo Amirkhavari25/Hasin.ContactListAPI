@@ -483,7 +483,7 @@ docker --version
 From the solution directory:
 
 ```bash
-docker build -t contact-list-api .
+docker build -t contact-list-api /ContactList.API .
 ```
 
 If the Dockerfile is located somewhere else:
