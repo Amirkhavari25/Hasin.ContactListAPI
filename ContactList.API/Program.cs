@@ -23,13 +23,15 @@ namespace ContactList.API
 
             var app = builder.Build();
 
-
+            
+            //Create database and tables automaticly 
+            //note:it's not good for production ,I just do this for this project
             using (var scope = app.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider
                     .GetRequiredService<EFDbContext>();
 
-                dbContext.Database.Migrate();
+                await dbContext.Database.EnsureCreatedAsync();
             }
 
             // Configure the HTTP request pipeline.
