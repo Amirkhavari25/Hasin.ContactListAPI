@@ -318,7 +318,7 @@ The middleware is responsible for:
 # Database
 
 The project currently uses **SQL Server** with Dapper for database access.
-
+It was better to call stored procedures for command actions and Query database Views intead of raw T-SQL queries, but for simplifying code base I used raw T-SQL command and queries.
 For this project, the application automatically creates the database schema when the API starts using:
 
 ```csharp
