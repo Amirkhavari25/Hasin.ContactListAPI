@@ -20,10 +20,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Controllers\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\ContactList.Application\ContactList.Application.csproj" />
 		<ProjectReference Include="..\ContactList.DI\ContactList.DI.csproj" />
 	</ItemGroup>

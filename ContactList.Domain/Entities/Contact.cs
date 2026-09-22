@@ -52,5 +52,35 @@ namespace ContactList.Domain.Entities
             Tag = tag.Trim();
             UserId = userId;
         }
+        public void Update(
+                      string firstName,
+                      string lastName,
+                      PhoneNumber phoneNumber,
+                      string tag)
+        {
+            if (string.IsNullOrWhiteSpace(firstName))
+                throw new ArgumentException(
+                    "First name is required.",
+                    nameof(firstName));
+
+            if (string.IsNullOrWhiteSpace(lastName))
+                throw new ArgumentException(
+                    "Last name is required.",
+                    nameof(lastName));
+
+            ArgumentNullException.ThrowIfNull(phoneNumber);
+
+            if (string.IsNullOrWhiteSpace(tag))
+                throw new ArgumentException(
+                    "Tag is required.",
+                    nameof(tag));
+
+            FirstName = firstName.Trim();
+            LastName = lastName.Trim();
+            PhoneNumber = phoneNumber;
+            Tag = tag.Trim();
+
+            UpdateDate = DateTime.UtcNow;
+        }
     }
 }
