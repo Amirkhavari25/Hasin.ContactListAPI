@@ -12,6 +12,10 @@ namespace ContactList.Domain.Entities
         public IReadOnlyCollection<Contact> Contacts =>
             _contacts.AsReadOnly();
 
+        protected User()
+        {
+        }
+
         public User(
             Guid id,
             Email email,
@@ -20,8 +24,21 @@ namespace ContactList.Domain.Entities
             string passwordHash)
             : base(id)
         {
+            ArgumentNullException.ThrowIfNull(email);
+            ArgumentNullException.ThrowIfNull(mobile);
+
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentException(
+                    "Username is required.",
+                    nameof(username));
+
+            if (string.IsNullOrWhiteSpace(passwordHash))
+                throw new ArgumentException(
+                    "Password hash is required.",
+                    nameof(passwordHash));
+
             Email = email;
-            Username = username;
+            Username = username.Trim();
             Mobile = mobile;
             PasswordHash = passwordHash;
         }
@@ -31,8 +48,10 @@ namespace ContactList.Domain.Entities
             ArgumentNullException.ThrowIfNull(contact);
 
             if (contact.UserId != Id)
+            {
                 throw new InvalidOperationException(
                     "Contact does not belong to this user.");
+            }
 
             if (_contacts.Any(x => x.Id == contact.Id))
                 return;
@@ -42,7 +61,8 @@ namespace ContactList.Domain.Entities
 
         public void RemoveContact(Guid contactId)
         {
-            var contact = _contacts.FirstOrDefault(x => x.Id == contactId);
+            var contact = _contacts
+                .FirstOrDefault(x => x.Id == contactId);
 
             if (contact is null)
                 return;

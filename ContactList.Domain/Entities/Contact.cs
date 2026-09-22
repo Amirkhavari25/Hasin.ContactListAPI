@@ -8,8 +8,12 @@ namespace ContactList.Domain.Entities
         public string LastName { get; private set; } = default!;
         public PhoneNumber PhoneNumber { get; private set; } = default!;
         public string Tag { get; private set; } = default!;
-
         public Guid UserId { get; private set; }
+        public User User { get; private set; } = default!;
+
+        protected Contact()
+        {
+        }
 
         public Contact(
             Guid id,
@@ -20,15 +24,32 @@ namespace ContactList.Domain.Entities
             Guid userId)
             : base(id)
         {
+            if (string.IsNullOrWhiteSpace(firstName))
+                throw new ArgumentException(
+                    "First name is required.",
+                    nameof(firstName));
+
+            if (string.IsNullOrWhiteSpace(lastName))
+                throw new ArgumentException(
+                    "Last name is required.",
+                    nameof(lastName));
+
+            ArgumentNullException.ThrowIfNull(phoneNumber);
+
+            if (string.IsNullOrWhiteSpace(tag))
+                throw new ArgumentException(
+                    "Tag is required.",
+                    nameof(tag));
+
             if (userId == Guid.Empty)
                 throw new ArgumentException(
                     "User id cannot be empty.",
                     nameof(userId));
 
-            FirstName = firstName;
-            LastName = lastName;
+            FirstName = firstName.Trim();
+            LastName = lastName.Trim();
             PhoneNumber = phoneNumber;
-            Tag = tag;
+            Tag = tag.Trim();
             UserId = userId;
         }
     }

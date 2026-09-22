@@ -1,4 +1,6 @@
 using ContactList.DI;
+using ContactList.Infrastracture.Persistance;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactList.API
 {
@@ -22,6 +24,13 @@ namespace ContactList.API
             var app = builder.Build();
 
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider
+                    .GetRequiredService<EFDbContext>();
+
+                dbContext.Database.Migrate();
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
